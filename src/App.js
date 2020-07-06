@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './Components/Header/Header';
 import LaunchCard from './Components/LaunchCard/LaunchCard';
 
-import { Grid, createMuiTheme, ThemeProvider, Typography } from '@material-ui/core';
+import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 
 import { getUpcomingLaunches } from './apiCalls';
@@ -49,6 +49,7 @@ class App extends React.Component {
   
   render() {
     const { darkMode, loading } = this.state;
+
     const theme = createMuiTheme({
       palette: {
         type: darkMode ? 'dark': 'light',
@@ -64,23 +65,24 @@ class App extends React.Component {
       typography: {
         h1: {
           color: darkMode ? red[400]: '#fff',
+          fontFamily: 'Pacifico, Roboto',
+          fontSize: 48,
         }
       }
-    })
+    });
+
     return (
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
           <Header toggleDarkMode={this.toggleDarkMode}/>
-          {loading ? <h1>Loading...</h1> : (
             <Grid
               container
               justify="center"
               alignItems="center"
               style={{ padding: '20px 0px'}}
             >
-              {this.renderUpcomingLaunches()}
+              { loading ? <CircularProgress color="inherit" /> : this.renderUpcomingLaunches()}
             </Grid>
-          )}
         </main>
       </ThemeProvider>
     );
