@@ -17,16 +17,24 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     try {
+      console.log('loading');
       const launches = await getUpcomingLaunches(10);
-      this.setState({ launches, loading: false });
+      const localThemePrefs = await localStorage.getItem('darkMode');
+      const darkMode = localThemePrefs ? JSON.parse(localThemePrefs): false;
+      await this.setState({
+        launches,
+        darkMode,
+        loading: false,
+      });
     } catch(e) {
       console.log(e);
       this.setState({ error: e, loading: false });
     }
   }
 
-  toggleDarkMode = () => {
+  toggleDarkMode = async () => {
     const { darkMode } = this.state;
+    await localStorage.setItem('darkMode', !darkMode);
     this.setState({ darkMode: !darkMode });
   }
 
@@ -74,7 +82,7 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
-          <Header toggleDarkMode={this.toggleDarkMode}/>
+          <Header toggleDarkMode={this.toggleDarkMode} darkMode={darkMode}/>
             <Grid
               container
               justify="center"

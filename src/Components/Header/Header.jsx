@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header({ darkMode, toggleDarkMode }) {
   const classes = useStyles();
+  const isDarkMode = darkMode === 'true' ? true: false;
   return (
     <header>
       <AppBar position="static">
