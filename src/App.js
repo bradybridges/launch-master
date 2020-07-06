@@ -6,11 +6,12 @@ import LaunchTimeframeToggle from './Components/LaunchTimeframeToggle/LaunchTime
 import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 
-import { getUpcomingLaunches } from './apiCalls';
+import { getUpcomingLaunches, getPastLaunches } from './apiCalls';
 
 class App extends React.Component {
   state = {
-    launches: null,
+    upcomingLaunches: null,
+    pastLaunches: null,
     darkMode: false,
     error: null,
     loading: true,
@@ -19,12 +20,15 @@ class App extends React.Component {
 
   componentDidMount = async () => {
     try {
-      console.log('loading');
-      const launches = await getUpcomingLaunches(10);
+      const windowEnd = this.getTodaysDate();
+      const windowStart = this.getOneMonthBackDate();
+      const upcomingLaunches = await getUpcomingLaunches(10);
+      const pastLaunches = await getPastLaunches(windowStart, windowEnd);
       const localThemePrefs = await localStorage.getItem('darkMode');
       const darkMode = localThemePrefs ? JSON.parse(localThemePrefs): false;
       await this.setState({
-        launches,
+        upcomingLaunches,
+        pastLaunches,
         darkMode,
         loading: false,
       });
@@ -44,6 +48,10 @@ class App extends React.Component {
     this.setState({ timeframe: !this.state.timeframe});
   }
 
+  setTimeFrame = (bool) => {
+    this.setState({ timeframe: bool });
+  }
+
   getTodaysDate = () => {
     const today = new Date();
     let day = today.getDate();
@@ -58,7 +66,7 @@ class App extends React.Component {
       month = `0${month}`;
     }
 
-    return `${month}/${day}/${year}`;
+    return `${year}-${month}-${day}`;
   }
 
   getOneMonthBackDate = () => {
@@ -70,14 +78,14 @@ class App extends React.Component {
     if(month < 10){
       month = `0${month}`;
     }
-    return `${month}/01/${year}`;
+    return `${year}-${month}-01`;
   }
 
   renderUpcomingLaunches = () => {
-    const { launches } = this.state;
+    const { upcomingLaunches } = this.state;
 
-    if(launches) {
-      return launches.launches.map((launch) => {
+    if(upcomingLaunches) {
+      return upcomingLaunches.launches.map((launch) => {
         return (
           <Grid item direction="column" xs={12} md={10} lg={8} key={launch.name}>
             <LaunchCard launch={launch}/>
@@ -88,10 +96,26 @@ class App extends React.Component {
       return <h1>We couldn't find any upcoming launches...</h1>;
     }
   }
+
+  renderPastLaunches = () => {
+    const { pastLaunches } = this.state;
+
+    if(pastLaunches) {
+      return pastLaunches.launches.map((launch) => {
+        return (
+          <Grid item direction="column" xs={12} md={10} lg={8} key={launch.name}>
+            <LaunchCard launch={launch}/>
+          </Grid>
+        );
+      });
+    } else {
+      return <h1>We couldn't find any past launches...</h1>;
+    }
+  }
   
   
   render() {
-    const { darkMode, loading } = this.state;
+    const { darkMode, loading, timeframe } = this.state;
 
     const theme = createMuiTheme({
       palette: {
@@ -118,14 +142,14 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
           <Header toggleDarkMode={this.toggleDarkMode} darkMode={darkMode}/>
-            <LaunchTimeframeToggle />
+            <LaunchTimeframeToggle setTimeFrame={this.setTimeFrame}/>
             <Grid
               container
               justify="center"
               alignItems="center"
               style={{ padding: '20px 0px'}}
             >
-              { loading ? <CircularProgress color="inherit" /> : this.renderUpcomingLaunches()}
+              { loading ? <CircularProgress color="inherit" /> : timeframe ? this.renderPastLaunches() : this.renderUpcomingLaunches()}
             </Grid>
         </main>
       </ThemeProvider>
