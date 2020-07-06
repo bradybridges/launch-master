@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Components/Header/Header';
 import LaunchCard from './Components/LaunchCard/LaunchCard';
+import LaunchTimeframeToggle from './Components/LaunchTimeframeToggle/LaunchTimeframeToggle';
 
 import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
@@ -13,6 +14,7 @@ class App extends React.Component {
     darkMode: false,
     error: null,
     loading: true,
+    timeframe: false,
   };
 
   componentDidMount = async () => {
@@ -36,6 +38,39 @@ class App extends React.Component {
     const { darkMode } = this.state;
     await localStorage.setItem('darkMode', !darkMode);
     this.setState({ darkMode: !darkMode });
+  }
+
+  toggleLaunchTimeFrames = () => {
+    this.setState({ timeframe: !this.state.timeframe});
+  }
+
+  getTodaysDate = () => {
+    const today = new Date();
+    let day = today.getDate();
+    let month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    
+    if(day < 10) {
+      day = `0${day}`;
+    }
+
+    if(month < 10) {
+      month = `0${month}`;
+    }
+
+    return `${month}/${day}/${year}`;
+  }
+
+  getOneMonthBackDate = () => {
+    const date = new Date();
+    date.setMonth(date.getMonth() -1);
+    let month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    if(month < 10){
+      month = `0${month}`;
+    }
+    return `${month}/01/${year}`;
   }
 
   renderUpcomingLaunches = () => {
@@ -83,6 +118,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
           <Header toggleDarkMode={this.toggleDarkMode} darkMode={darkMode}/>
+            <LaunchTimeframeToggle />
             <Grid
               container
               justify="center"
