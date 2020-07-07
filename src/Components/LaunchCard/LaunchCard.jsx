@@ -92,9 +92,11 @@ export default function LaunchCard({ launch }) {
               {probability}% Chance of Launch
             </Typography>
           )}
-          <Typography paragraph>
-            {missions[0].description}
-          </Typography>
+          {missions[0] && (
+            <Typography paragraph>
+              {missions[0].description}
+            </Typography>
+          )}
         </CardContent>
         <CardContent>
           {/* <CardMedia
@@ -104,7 +106,9 @@ export default function LaunchCard({ launch }) {
           /> */}
           <Typography paragraph>Rocket: {rocket.familyname}</Typography>
           {rocket.configuration && <Typography paragraph>Configuration: {rocket.configuration}</Typography>}
-          <Typography paragraph>Launching from  {location.pads[0].name}</Typography>
+          <Typography paragraph>Launching from</Typography>
+          <Typography paragraph>{location.name}</Typography>
+          <Typography paragraph>{location.pads[0].name}</Typography>
           <Typography paragraph>Status: {launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</Typography>
           {(tbddate === 1 || tbdtime === 1) ? (
             <React.Fragment>
