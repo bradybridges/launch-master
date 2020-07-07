@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
 export default function LaunchCard({ launch }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const { name, net, missions, rocket, probability, location, tbddate, tbdtime, lsp } = launch;
+  const { name, net, missions, rocket, probability, location, tbddate, tbdtime } = launch;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -51,29 +51,23 @@ export default function LaunchCard({ launch }) {
     <Card className={classes.root}>
       <CardHeader
         title={name}
-        subheader={net}
-      />
-      {/* <CardContent>
-        <Typography variant="body1" component="p">
-          {missions[0].name}
-        </Typography>
-      </CardContent> */}
-      {/* <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {missions[0].description}
-        </Typography>
-      </CardContent> */}
-      <CardActions disableSpacing>
-        { launch.vidURLs.length > 0 && (
+        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${net}`: net}
+        action={launch.vidURLs.length > 0 ? (
           <a href={launch.vidURLs[0]} target="_blank" rel="noopener noreferrer">
             <IconButton aria-label="watch live">
               <VideoCam fontSize="large"/>
             </IconButton>
           </a>
-        )}
-        {/* <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton> */}
+        ): null}
+      />
+      {launch.failreason && (
+        <CardContent>
+          <Typography>
+            {launch.failreason}
+          </Typography>
+        </CardContent>
+      )}
+      <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -99,28 +93,13 @@ export default function LaunchCard({ launch }) {
           )}
         </CardContent>
         <CardContent>
-          {/* <CardMedia
-            className={classes.media}
-            image={rocket.imageURL}
-            title="Paella dish"
-          /> */}
           <Typography paragraph>Rocket: {rocket.familyname}</Typography>
           {rocket.configuration && <Typography paragraph>Configuration: {rocket.configuration}</Typography>}
           <Typography paragraph>Launching from</Typography>
           <Typography paragraph>{location.name}</Typography>
           <Typography paragraph>{location.pads[0].name}</Typography>
           <Typography paragraph>Status: {launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</Typography>
-          {(tbddate === 1 || tbdtime === 1) ? (
-            <React.Fragment>
-              <Typography paragraph>Confirmed:</Typography>
-              <CancelIcon />
-            </React.Fragment>
-          ): (
-            <React.Fragment>
-              <Typography paragraph>Confirmed:</Typography>
-              <CheckCircleIcon />
-            </React.Fragment>
-          )}
+          {launch.failreason && <Typography paragraph>{launch.failreason}</Typography>}
         </CardContent>
       </Collapse>
     </Card>
