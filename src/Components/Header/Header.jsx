@@ -59,7 +59,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
       <AppBar position="static">
         <Toolbar className={classes.toolbar}>
           <Typography variant="h1">Launch Master</Typography>
-          <div className={classes.search}>
+          {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -71,7 +71,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
               }}
               inputProps={{ 'aria-label': 'search' }}
             />
-          </div>
+          </div> */}
           <div>
             <Typography style={{ display: 'inline'}}>Light</Typography>
             <Switch

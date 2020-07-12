@@ -5,7 +5,6 @@ import LaunchTimeframeToggle from './Components/LaunchTimeframeToggle/LaunchTime
 
 import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
-
 import { getUpcomingLaunches, getPastLaunches } from './apiCalls';
 
 class App extends React.Component {
