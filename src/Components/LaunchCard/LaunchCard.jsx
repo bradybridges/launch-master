@@ -1,19 +1,25 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
-import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Collapse,
+  IconButton,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from '@material-ui/core';
+
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import CancelIcon from '@material-ui/icons/Cancel';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import VideoCam from '@material-ui/icons/Videocam';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  table: {
+    marginBottom: theme.spacing(3),
+  }
 }));
 
 export default function LaunchCard({ launch }) {
@@ -92,15 +101,39 @@ export default function LaunchCard({ launch }) {
             </Typography>
           )}
         </CardContent>
-        <CardContent>
+        {/* <CardContent>
           <Typography paragraph>Rocket: {rocket.familyname}</Typography>
           {rocket.configuration && <Typography paragraph>Configuration: {rocket.configuration}</Typography>}
           <Typography paragraph>Launching from</Typography>
-          <Typography paragraph>{location.name}</Typography>
+          {location.pads.length <= 0 && <Typography paragraph>{location.name}</Typography>}
           <Typography paragraph>{location.pads[0].name}</Typography>
           <Typography paragraph>Status: {launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</Typography>
           {launch.failreason && <Typography paragraph>{launch.failreason}</Typography>}
-        </CardContent>
+        </CardContent> */}
+        <TableContainer component={Paper}>
+          <Table className={classes.table} aria-label="Launch Information">
+            <TableHead>
+              <TableRow>
+                <TableCell>Rocket Name</TableCell>
+                <TableCell>Configuration</TableCell>
+                <TableCell>Launch Location</TableCell>
+                <TableCell>Status</TableCell>
+                <TableCell>Date</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell component="th" scope="row">
+                  {rocket.familyname}
+                </TableCell>
+                <TableCell>{rocket.configuration ? rocket.configuration: 'Uknown'}</TableCell>
+                <TableCell>{location.pads.length > 0 ? location.pads[0].name: location.name}</TableCell>
+                <TableCell>{launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</TableCell>
+                <TableCell>{net}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Collapse>
     </Card>
   );
