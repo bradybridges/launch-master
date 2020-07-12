@@ -25,12 +25,15 @@ class App extends React.Component {
       const pastLaunches = await getPastLaunches(windowStart, windowEnd);
       const localThemePrefs = await localStorage.getItem('darkMode');
       const darkMode = localThemePrefs ? JSON.parse(localThemePrefs): false;
-      await this.setState({
-        upcomingLaunches,
-        pastLaunches,
-        darkMode,
-        loading: false,
-      });
+      
+      setTimeout(() => {
+        this.setState({
+          upcomingLaunches,
+          pastLaunches,
+          darkMode,
+          loading: false,
+        });
+      }, 1000);
     } catch(e) {
       console.log(e);
       this.setState({ error: e, loading: false });
