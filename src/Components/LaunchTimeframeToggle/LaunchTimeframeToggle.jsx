@@ -47,19 +47,21 @@ export default function LaunchTimeframeToggle({ setTimeFrame, setNumResults, num
           Past
         </ToggleButton>
       </ToggleButtonGroup>
-      <FormControl variant="filled" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-filled-label">Results</InputLabel>
-        <Select
-          labelId="demo-simple-select-filled-label"
-          id="demo-simple-select-filled"
-          value={numResults}
-          onChange={handleNumResults}
-        >
-          <MenuItem value={10}>10</MenuItem>
-          <MenuItem value={25}>25</MenuItem>
-          <MenuItem value={50}>50</MenuItem>
-        </Select>
-      </FormControl>
+      {active === 'upcoming' ? (
+        <FormControl variant="filled" className={classes.formControl}>
+          <InputLabel id="demo-simple-select-filled-label">Results</InputLabel>
+          <Select
+            labelId="demo-simple-select-filled-label"
+            id="demo-simple-select-filled"
+            value={numResults}
+            onChange={handleNumResults}
+          >
+            <MenuItem value={10}>10</MenuItem>
+            <MenuItem value={25}>25</MenuItem>
+            <MenuItem value={50}>50</MenuItem>
+          </Select>
+        </FormControl>
+      ): null}
     </div>
   );
 }
