@@ -95,21 +95,14 @@ export default function LaunchCard({ launch }) {
               {probability}% Chance of Launch
             </Typography>
           )}
-          {missions[0] && (
+          {missions.length > 0 ? (
             <Typography paragraph>
               {missions[0].description}
             </Typography>
+          ): (
+            <Typography paragraph>No description available</Typography>
           )}
         </CardContent>
-        {/* <CardContent>
-          <Typography paragraph>Rocket: {rocket.familyname}</Typography>
-          {rocket.configuration && <Typography paragraph>Configuration: {rocket.configuration}</Typography>}
-          <Typography paragraph>Launching from</Typography>
-          {location.pads.length <= 0 && <Typography paragraph>{location.name}</Typography>}
-          <Typography paragraph>{location.pads[0].name}</Typography>
-          <Typography paragraph>Status: {launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</Typography>
-          {launch.failreason && <Typography paragraph>{launch.failreason}</Typography>}
-        </CardContent> */}
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="Launch Information">
             <TableHead>

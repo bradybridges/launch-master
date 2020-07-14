@@ -15,13 +15,14 @@ class App extends React.Component {
     error: null,
     loading: true,
     timeframe: false,
+    numResults: 10,
   };
 
   componentDidMount = async () => {
     try {
       const windowEnd = this.getTodaysDate();
       const windowStart = this.getOneMonthBackDate();
-      const upcomingLaunches = await getUpcomingLaunches(10);
+      const upcomingLaunches = await getUpcomingLaunches(50);
       const pastLaunches = await getPastLaunches(windowStart, windowEnd);
       const localThemePrefs = await localStorage.getItem('darkMode');
       const darkMode = localThemePrefs ? JSON.parse(localThemePrefs): false;
@@ -54,6 +55,10 @@ class App extends React.Component {
     this.setState({ timeframe: bool });
   }
 
+  setNumResults = (num) => {
+    this.setState({ numResults: num });
+  }
+
   getTodaysDate = () => {
     const today = new Date();
     let day = today.getDate();
@@ -84,16 +89,17 @@ class App extends React.Component {
   }
 
   renderUpcomingLaunches = () => {
-    const { upcomingLaunches } = this.state;
+    const { upcomingLaunches, numResults } = this.state;
 
     if(upcomingLaunches) {
-      return upcomingLaunches.launches.map((launch) => {
+      const launchCards = upcomingLaunches.launches.map((launch, i) => {
         return (
           <Grid item direction="column" xs={12} md={10} lg={8} key={launch.name}>
             <LaunchCard launch={launch}/>
           </Grid>
         );
       });
+      return launchCards.slice(0, numResults);
     } else {
       return <h1>We couldn't find any upcoming launches...</h1>;
     }
@@ -117,7 +123,7 @@ class App extends React.Component {
   
   
   render() {
-    const { darkMode, loading, timeframe } = this.state;
+    const { darkMode, loading, timeframe, numResults } = this.state;
 
     const theme = createMuiTheme({
       palette: {
@@ -144,7 +150,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
           <Header toggleDarkMode={this.toggleDarkMode} darkMode={darkMode}/>
-            <LaunchTimeframeToggle setTimeFrame={this.setTimeFrame}/>
+            <LaunchTimeframeToggle setTimeFrame={this.setTimeFrame} setNumResults={this.setNumResults} numResults={numResults}/>
             <Grid
               container
               justify="center"
