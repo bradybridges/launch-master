@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header Header should match snapshot 1`] = `
+<header
+  style={
+    Object {
+      "flexGrow": 1,
+    }
+  }
+>
+  <WithStyles(ForwardRef(AppBar))
+    position="static"
+  >
+    <WithStyles(ForwardRef(Toolbar))
+      className="makeStyles-toolbar-1"
+    >
+      <WithStyles(ForwardRef(Typography))
+        variant="h1"
+      >
+        Launch Master
+      </WithStyles(ForwardRef(Typography))>
+      <div>
+        <WithStyles(ForwardRef(Typography))
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Light
+        </WithStyles(ForwardRef(Typography))>
+        <WithStyles(ForwardRef(Switch))
+          checked={true}
+          color="secondary"
+          inputProps={
+            Object {
+              "aria-label": "dark mode checkbox",
+            }
+          }
+          name="darkmode-toggle"
+          onChange={[Function]}
+        />
+        <WithStyles(ForwardRef(Typography))
+          color="secondary"
+          style={
+            Object {
+              "display": "inline",
+            }
+          }
+        >
+          Dark
+        </WithStyles(ForwardRef(Typography))>
+      </div>
+    </WithStyles(ForwardRef(Toolbar))>
+  </WithStyles(ForwardRef(AppBar))>
+</header>
+`;
