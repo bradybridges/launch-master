@@ -4,7 +4,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
-export default function LaunchTimeframeToggle({ setTimeFrame, setNumResults, numResults }) {
+export default function LaunchOptionsBar({ setTimeFrame, setNumResults, numResults }) {
   const [active, setActive] = React.useState('upcoming');
 
   const useStyles = makeStyles((theme) => ({
@@ -49,10 +49,10 @@ export default function LaunchTimeframeToggle({ setTimeFrame, setNumResults, num
       </ToggleButtonGroup>
       {active === 'upcoming' ? (
         <FormControl variant="filled" className={classes.formControl}>
-          <InputLabel id="demo-simple-select-filled-label">Results</InputLabel>
+          <InputLabel>Results</InputLabel>
           <Select
-            labelId="demo-simple-select-filled-label"
-            id="demo-simple-select-filled"
+            labelId="filled-label"
+            id="select-filled"
             value={numResults}
             onChange={handleNumResults}
           >
