@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Components/Header/Header';
 import LaunchCard from './Components/LaunchCard/LaunchCard';
-import LaunchTimeframeToggle from './Components/LaunchTimeframeToggle/LaunchTimeframeToggle';
+import LaunchOptionsBar from './Components/LaunchOptionsBar/LaunchOptionsBar';
 
 import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
@@ -150,7 +150,7 @@ class App extends React.Component {
       <ThemeProvider theme={theme}>
         <main style={{ backgroundColor: darkMode ? '#000': '#fafafa' }}>
           <Header toggleDarkMode={this.toggleDarkMode} darkMode={darkMode}/>
-            <LaunchTimeframeToggle setTimeFrame={this.setTimeFrame} setNumResults={this.setNumResults} numResults={numResults}/>
+            <LaunchOptionsBar setTimeFrame={this.setTimeFrame} setNumResults={this.setNumResults} numResults={numResults}/>
             <Grid
               container
               justify="center"
