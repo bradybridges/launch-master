@@ -59,7 +59,6 @@ describe('App', () => {
 
   it('getOneMonthBackDate should return a ten digit date', () => {
     const oneMonthBackDate = wrapper.instance().getOneMonthBackDate();
-    console.log(oneMonthBackDate);
     expect(oneMonthBackDate.length).toEqual(10);
-  })
+  });
 });
