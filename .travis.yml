@@ -5,5 +5,9 @@ node_js:
 cache:
   directories:
   - node_modules
+
+before_script:
+  - echo 'US/Central' | sudo tee /etc/timezone
+  - sudo dpkg-reconfigure --frontend noninteractive tzdata
 script:
   - npm test
