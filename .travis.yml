@@ -7,9 +7,7 @@ cache:
   - node_modules
 
 before_script:
-  - echo 'America/Menominee' | sudo tee /etc/timezone
-  - sudo dpkg-reconfigure --frontend noninteractive tzdata
-  - sudo ntpdate ntp.ubuntu.com
+  - sudo timedatectl set-timezone America/Menominee
 
 script:
   - npm test
