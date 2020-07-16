@@ -9,5 +9,7 @@ cache:
 before_script:
   - echo 'US/Central' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
+  - sudo ntpdate ntp.ubuntu.com
+
 script:
   - npm test
