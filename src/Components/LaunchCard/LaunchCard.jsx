@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function LaunchCard({ launch }) {
+export default function LaunchCard({ launch, past }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
   const { name, net, missions, rocket, probability, location, tbddate, tbdtime } = launch;
@@ -56,11 +56,13 @@ export default function LaunchCard({ launch }) {
     setExpanded(!expanded);
   };
 
+  const time = new Date(net).toString();
+
   return (
     <Card className={classes.root}>
       <CardHeader
         title={name}
-        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${net}`: net}
+        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${time}`: time}
         action={launch.vidURLs.length > 0 ? (
           <a href={launch.vidURLs[0]} target="_blank" rel="noopener noreferrer">
             <IconButton aria-label="watch live">
@@ -76,6 +78,30 @@ export default function LaunchCard({ launch }) {
           </Typography>
         </CardContent>
       )}
+      <CardContent>
+          {(probability > -1 && !past) && (
+            <Typography paragraph>
+              {probability}% Chance of Launch
+            </Typography>
+          )}
+          {missions.length > 0 ? (
+            <React.Fragment>
+              <Typography variant="h4">
+                {missions[0].typeName} Mission
+              </Typography>
+              <Typography paragraph>
+                {missions[0].description}
+              </Typography>
+            </React.Fragment>
+          ): (
+            <Typography paragraph>No description available</Typography>
+          )}
+          {launch.infoURLs.length > 0 && launch.infoURLs.map((info) => (
+            <a href={info} target="_blank" rel="noopener noreferrer" key={info}>
+              {info}
+            </a>
+          ))}
+        </CardContent>
       <CardActions disableSpacing>
         <IconButton
           className={clsx(classes.expand, {
@@ -89,20 +115,6 @@ export default function LaunchCard({ launch }) {
         </IconButton>
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          {probability > 0 && (
-            <Typography paragraph>
-              {probability}% Chance of Launch
-            </Typography>
-          )}
-          {missions.length > 0 ? (
-            <Typography paragraph>
-              {missions[0].description}
-            </Typography>
-          ): (
-            <Typography paragraph>No description available</Typography>
-          )}
-        </CardContent>
         <TableContainer component={Paper}>
           <Table className={classes.table} aria-label="Launch Information">
             <TableHead>
@@ -119,10 +131,10 @@ export default function LaunchCard({ launch }) {
                 <TableCell component="th" scope="row">
                   {rocket.familyname}
                 </TableCell>
-                <TableCell>{rocket.configuration ? rocket.configuration: 'Uknown'}</TableCell>
+                <TableCell>{rocket.configuration ? rocket.configuration: 'Unknown'}</TableCell>
                 <TableCell>{location.pads.length > 0 ? location.pads[0].name: location.name}</TableCell>
-                <TableCell>{launch.status === 1 ? 'Green': launch.status ===2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</TableCell>
-                <TableCell>{net}</TableCell>
+                <TableCell>{launch.status === 1 ? 'Green': launch.status === 2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</TableCell>
+                <TableCell>{time}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
