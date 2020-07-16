@@ -4,7 +4,7 @@ import LaunchCard from './Components/LaunchCard/LaunchCard';
 import LaunchOptionsBar from './Components/LaunchOptionsBar/LaunchOptionsBar';
 
 import { Grid, createMuiTheme, ThemeProvider, Typography, CircularProgress } from '@material-ui/core';
-import { red } from '@material-ui/core/colors';
+import { red, blue } from '@material-ui/core/colors';
 import { getUpcomingLaunches, getPastLaunches } from './apiCalls';
 
 class App extends React.Component {
@@ -95,7 +95,7 @@ class App extends React.Component {
       const launchCards = upcomingLaunches.launches.map((launch, i) => {
         return (
           <Grid item direction="column" xs={12} md={10} lg={8} key={launch.name}>
-            <LaunchCard launch={launch}/>
+            <LaunchCard launch={launch} past={false}/>
           </Grid>
         );
       });
@@ -112,7 +112,7 @@ class App extends React.Component {
       return pastLaunches.launches.map((launch) => {
         return (
           <Grid item direction="column" xs={12} md={10} lg={8} key={launch.name}>
-            <LaunchCard launch={launch}/>
+            <LaunchCard launch={launch} past={true}/>
           </Grid>
         );
       });
@@ -120,7 +120,6 @@ class App extends React.Component {
       return <h1>We couldn't find any past launches...</h1>;
     }
   }
-  
   
   render() {
     const { darkMode, loading, timeframe, numResults } = this.state;
@@ -142,7 +141,13 @@ class App extends React.Component {
           color: darkMode ? red[400]: '#fff',
           fontFamily: 'Pacifico, Roboto',
           fontSize: 48,
-        }
+        },
+        h4: {
+          color: darkMode ? red[400]: '#000',
+          fontSize: 20,
+          fontFamily: 'Roboto',
+          padding: '1em',
+        },
       }
     });
 

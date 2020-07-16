@@ -10,13 +10,15 @@ export default function LaunchOptionsBar({ setTimeFrame, setNumResults, numResul
   const useStyles = makeStyles((theme) => ({
     buttonContainer: {
       display: 'flex',
+      flexDirection: 'column',
       justifyContent: 'center',
+      alignItems: 'center',
       marginTop: theme.spacing(4), 
     },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-      justifySelf: 'flex-end',
+      alignSelf: 'flex-end',
     },
     selectEmpty: {
       marginTop: theme.spacing(2),

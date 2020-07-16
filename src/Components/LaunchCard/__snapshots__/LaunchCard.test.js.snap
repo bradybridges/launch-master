@@ -9,6 +9,26 @@ exports[`LaunchCard Component should show alternate text or not display elements
     subheader="Unconfirmed: July 15, 2020 13:00:00 UTC"
     title="Minotaur IV | NROL-129"
   />
+  <WithStyles(ForwardRef(CardContent))>
+    <WithStyles(ForwardRef(Typography))
+      paragraph={true}
+    >
+      % Chance of Launch
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      paragraph={true}
+    >
+      No description available
+    </WithStyles(ForwardRef(Typography))>
+    <a
+      href="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
+      key="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553
+    </a>
+  </WithStyles(ForwardRef(CardContent))>
   <WithStyles(ForwardRef(CardActions))
     disableSpacing={true}
   >
@@ -26,13 +46,6 @@ exports[`LaunchCard Component should show alternate text or not display elements
     timeout="auto"
     unmountOnExit={true}
   >
-    <WithStyles(ForwardRef(CardContent))>
-      <WithStyles(ForwardRef(Typography))
-        paragraph={true}
-      >
-        No description available
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(CardContent))>
     <WithStyles(ForwardRef(TableContainer))
       component={
         Object {
@@ -383,7 +396,7 @@ exports[`LaunchCard Component should show alternate text or not display elements
               Minotaur
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))>
-              Uknown
+              Unknown
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))>
               Wallops Island, Virginia, USA
@@ -430,6 +443,33 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
       The launch failed spontaneously
     </WithStyles(ForwardRef(Typography))>
   </WithStyles(ForwardRef(CardContent))>
+  <WithStyles(ForwardRef(CardContent))>
+    <WithStyles(ForwardRef(Typography))
+      paragraph={true}
+    >
+      90
+      % Chance of Launch
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      variant="h4"
+    >
+      Government/Top Secret
+       Mission
+    </WithStyles(ForwardRef(Typography))>
+    <WithStyles(ForwardRef(Typography))
+      paragraph={true}
+    >
+      Classified payload for the U.S. National Reconnaissance Office.
+    </WithStyles(ForwardRef(Typography))>
+    <a
+      href="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
+      key="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553
+    </a>
+  </WithStyles(ForwardRef(CardContent))>
   <WithStyles(ForwardRef(CardActions))
     disableSpacing={true}
   >
@@ -447,19 +487,6 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
     timeout="auto"
     unmountOnExit={true}
   >
-    <WithStyles(ForwardRef(CardContent))>
-      <WithStyles(ForwardRef(Typography))
-        paragraph={true}
-      >
-        90
-        % Chance of Launch
-      </WithStyles(ForwardRef(Typography))>
-      <WithStyles(ForwardRef(Typography))
-        paragraph={true}
-      >
-        Classified payload for the U.S. National Reconnaissance Office.
-      </WithStyles(ForwardRef(Typography))>
-    </WithStyles(ForwardRef(CardContent))>
     <WithStyles(ForwardRef(TableContainer))
       component={
         Object {
