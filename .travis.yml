@@ -7,7 +7,7 @@ cache:
   - node_modules
 
 before_script:
-  - echo 'US/Central' | sudo tee /etc/timezone
+  - echo 'America/Menominee' | sudo tee /etc/timezone
   - sudo dpkg-reconfigure --frontend noninteractive tzdata
   - sudo ntpdate ntp.ubuntu.com
 
