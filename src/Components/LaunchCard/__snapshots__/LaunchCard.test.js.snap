@@ -6,7 +6,7 @@ exports[`LaunchCard Component should show alternate text or not display elements
 >
   <WithStyles(ForwardRef(CardHeader))
     action={null}
-    subheader="Unconfirmed: Wed Jul 15 2020 08:00:00 GMT-0500 (Central Daylight Time)"
+    subheader="Unconfirmed: July 15, 2020 13:00:00 UTC"
     title="Minotaur IV | NROL-129"
   />
   <WithStyles(ForwardRef(CardContent))>
@@ -405,7 +405,7 @@ exports[`LaunchCard Component should show alternate text or not display elements
               Red
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))>
-              Wed Jul 15 2020 08:00:00 GMT-0500 (Central Daylight Time)
+              July 15, 2020 13:00:00 UTC
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
         </WithStyles(ForwardRef(TableBody))>
@@ -435,7 +435,7 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
         </ForwardRef(WithStyles)>
       </a>
     }
-    subheader="Wed Jul 15 2020 08:00:00 GMT-0500 (Central Daylight Time)"
+    subheader="July 15, 2020 13:00:00 UTC"
     title="Minotaur IV | NROL-129"
   />
   <WithStyles(ForwardRef(CardContent))>
@@ -846,7 +846,7 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
               Green
             </WithStyles(ForwardRef(TableCell))>
             <WithStyles(ForwardRef(TableCell))>
-              Wed Jul 15 2020 08:00:00 GMT-0500 (Central Daylight Time)
+              July 15, 2020 13:00:00 UTC
             </WithStyles(ForwardRef(TableCell))>
           </WithStyles(ForwardRef(TableRow))>
         </WithStyles(ForwardRef(TableBody))>

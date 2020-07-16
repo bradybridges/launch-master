@@ -56,13 +56,11 @@ export default function LaunchCard({ launch, past }) {
     setExpanded(!expanded);
   };
 
-  const time = new Date(net).toString();
-
   return (
     <Card className={classes.root}>
       <CardHeader
         title={name}
-        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${time}`: time}
+        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${net}`: net}
         action={launch.vidURLs.length > 0 ? (
           <a href={launch.vidURLs[0]} target="_blank" rel="noopener noreferrer">
             <IconButton aria-label="watch live">
@@ -134,7 +132,7 @@ export default function LaunchCard({ launch, past }) {
                 <TableCell>{rocket.configuration ? rocket.configuration: 'Unknown'}</TableCell>
                 <TableCell>{location.pads.length > 0 ? location.pads[0].name: location.name}</TableCell>
                 <TableCell>{launch.status === 1 ? 'Green': launch.status === 2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</TableCell>
-                <TableCell>{time}</TableCell>
+                <TableCell>{net}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
