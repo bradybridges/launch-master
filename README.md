@@ -7,7 +7,7 @@
 * [Screenshots](#Screenshots) 
 
 ## Live Page
-  Take a look at the live page [here](htts://bradybridges.github.io/launch-master)
+  Take a look at the live page [here](https://bradybridges.github.io/launch-master)
 
 ## Objective
   
