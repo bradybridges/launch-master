@@ -1,55 +1,84 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { FormControl, InputLabel, Select, MenuItem } from '@material-ui/core';
-import ToggleButton from '@material-ui/lab/ToggleButton';
-import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { FormControl, InputLabel, Select, MenuItem } from "@material-ui/core";
+import ToggleButton from "@material-ui/lab/ToggleButton";
+import ToggleButtonGroup from "@material-ui/lab/ToggleButtonGroup";
 
-export default function LaunchOptionsBar({ setTimeFrame, setNumResults, numResults }) {
-  const [active, setActive] = React.useState('upcoming');
+export default function LaunchOptionsBar({
+  setTimeFrame,
+  setNumResults,
+  numResults,
+  timeframe,
+}) {
+  const [active, setActive] = React.useState("upcoming");
 
   const useStyles = makeStyles((theme) => ({
     buttonContainer: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginTop: theme.spacing(4), 
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+      paddingTop: theme.spacing(10),
     },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-      alignSelf: 'flex-end',
+      alignSelf: "flex-end",
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
   }));
 
-  const handleActive = (event, newActive) => {
+  const handleActive = (newActive) => {
     setActive(newActive);
-  }
+  };
 
   const handleNumResults = (e) => {
     setNumResults(e.target.value);
-  }
+  };
+
+  const handleTimeFrame = (newTimeFrame) => {
+    if (newTimeFrame === timeframe) return;
+
+    if (newTimeFrame === "upcoming") {
+      setActive("upcoming");
+      setTimeFrame(false);
+    } else {
+      setActive("past");
+      setTimeFrame(true);
+    }
+  };
 
   const classes = useStyles();
   return (
-    <div className={classes.buttonContainer} aria-label="select upcoming launches or past launches">
+    <div
+      className={classes.buttonContainer}
+      aria-label="select upcoming launches or past launches"
+    >
       <ToggleButtonGroup
         value={active}
         exclusive
-        onChange={handleActive}
         aria-label="past or upcoming launch selection"
       >
-        <ToggleButton value="upcoming" aria-label="upcoming launches" onClick={() => setTimeFrame(false)}>
+        <ToggleButton
+          value="upcoming"
+          aria-label="upcoming launches"
+          onClick={() => handleTimeFrame("upcoming")}
+          selected={!timeframe}
+        >
           Upcoming
         </ToggleButton>
-        <ToggleButton value="past" aria-label="past launches" onClick={() => setTimeFrame(true)}>
+        <ToggleButton
+          value="past"
+          aria-label="past launches"
+          onClick={() => handleTimeFrame("past")}
+          selected={timeframe}
+        >
           Past
         </ToggleButton>
       </ToggleButtonGroup>
-      {active === 'upcoming' ? (
+      {active === "upcoming" ? (
         <FormControl variant="filled" className={classes.formControl}>
           <InputLabel>Results</InputLabel>
           <Select
@@ -63,7 +92,7 @@ export default function LaunchOptionsBar({ setTimeFrame, setNumResults, numResul
             <MenuItem value={50}>50</MenuItem>
           </Select>
         </FormControl>
-      ): null}
+      ) : null}
     </div>
   );
 }
