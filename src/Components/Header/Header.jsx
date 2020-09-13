@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ReactComponent as SunImg } from "../../Images/sun.svg";
-import { Switch } from "@material-ui/core";
-import {
-  fade,
-  makeStyles,
-  Typography,
-  AppBar,
-  Toolbar,
-} from "@material-ui/core";
-import { dark } from "@material-ui/core/styles/createPalette";
+import { makeStyles, Typography, AppBar, Toolbar } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -54,7 +47,7 @@ export default function Header({ darkMode, toggleDarkMode }) {
   const [fill, setFill] = useState();
 
   useEffect(() => {
-    const fillColor = darkMode ? "red" : "white";
+    const fillColor = darkMode ? red[500] : "white";
     setFill(fillColor);
   }, [darkMode]);
 
