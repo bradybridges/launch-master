@@ -1,10 +1,10 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import clsx from "clsx";
+import { makeStyles } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
 import {
   Card,
   CardHeader,
-  CardMedia,
   CardContent,
   CardActions,
   Collapse,
@@ -17,40 +17,54 @@ import {
   TableHead,
   TableRow,
   Paper,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import VideoCam from '@material-ui/icons/Videocam';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import VideoCam from "@material-ui/icons/Videocam";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '10px 0px',
-  },
-  media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-    borderRadius: 4,
-    maxWidth: '300px',
+    margin: `${theme.spacing(1)}px 0`,
+    padding: theme.spacing(2),
+    width: "90%",
   },
   expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
+    transform: "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
       duration: theme.transitions.duration.short,
     }),
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: "rotate(180deg)",
   },
   table: {
     marginBottom: theme.spacing(3),
-  }
+  },
+  launchLink: {
+    color: blue[400],
+
+    "&:hover": {
+      color: blue[700],
+    },
+  },
+  boldText: {
+    fontWeight: "bold",
+  },
 }));
 
 export default function LaunchCard({ launch, past }) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const { name, net, missions, rocket, probability, location, tbddate, tbdtime } = launch;
+  const {
+    name,
+    net,
+    missions,
+    rocket,
+    probability,
+    location,
+    tbddate,
+    tbdtime,
+  } = launch;
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -60,47 +74,60 @@ export default function LaunchCard({ launch, past }) {
     <Card className={classes.root}>
       <CardHeader
         title={name}
-        subheader={(tbddate === 1 || tbdtime === 1) ? `Unconfirmed: ${net}`: net}
-        action={launch.vidURLs.length > 0 ? (
-          <a href={launch.vidURLs[0]} target="_blank" rel="noopener noreferrer">
-            <IconButton aria-label="watch live">
-              <VideoCam fontSize="large"/>
-            </IconButton>
-          </a>
-        ): null}
+        subheader={tbddate === 1 || tbdtime === 1 ? `Unconfirmed: ${net}` : net}
+        action={
+          launch.vidURLs.length > 0 ? (
+            <a
+              href={launch.vidURLs[0]}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <IconButton aria-label="watch live">
+                <VideoCam fontSize="large" />
+              </IconButton>
+            </a>
+          ) : null
+        }
       />
       {launch.failreason && (
         <CardContent>
-          <Typography>
-            {launch.failreason}
-          </Typography>
+          <Typography>{launch.failreason}</Typography>
         </CardContent>
       )}
       <CardContent>
-          {(probability > -1 && !past) && (
-            <Typography paragraph>
-              {probability}% Chance of Launch
+        {probability > -1 && !past && (
+          <Typography paragraph>{probability}% Chance of Launch</Typography>
+        )}
+        {missions.length > 0 ? (
+          <React.Fragment>
+            <Typography variant="h4" style={{ paddingLeft: 0 }}>
+              {missions[0].typeName} Mission
             </Typography>
-          )}
-          {missions.length > 0 ? (
-            <React.Fragment>
-              <Typography variant="h4">
-                {missions[0].typeName} Mission
-              </Typography>
-              <Typography paragraph>
-                {missions[0].description}
-              </Typography>
-            </React.Fragment>
-          ): (
-            <Typography paragraph>No description available</Typography>
-          )}
-          {launch.infoURLs.length > 0 && launch.infoURLs.map((info) => (
-            <a href={info} target="_blank" rel="noopener noreferrer" key={info}>
+            <Typography paragraph>{missions[0].description}</Typography>
+          </React.Fragment>
+        ) : (
+          <Typography
+            paragraph
+            className={`${classes.missionDescription} ${classes.boldText}`}
+            style={{ textAlign: "center" }}
+          >
+            No description available
+          </Typography>
+        )}
+        {launch.infoURLs.length > 0 &&
+          launch.infoURLs.map((info) => (
+            <a
+              className={classes.launchLink}
+              href={info}
+              target="_blank"
+              rel="noopener noreferrer"
+              key={info}
+            >
               {info}
             </a>
           ))}
-        </CardContent>
-      <CardActions disableSpacing>
+      </CardContent>
+      <CardActions disableSpacing style={{ justifyContent: "flex-end" }}>
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
@@ -129,9 +156,23 @@ export default function LaunchCard({ launch, past }) {
                 <TableCell component="th" scope="row">
                   {rocket.familyname}
                 </TableCell>
-                <TableCell>{rocket.configuration ? rocket.configuration: 'Unknown'}</TableCell>
-                <TableCell>{location.pads.length > 0 ? location.pads[0].name: location.name}</TableCell>
-                <TableCell>{launch.status === 1 ? 'Green': launch.status === 2 ? 'Red': launch.status === 3 ? 'Succeeded' : 'Failed'}</TableCell>
+                <TableCell>
+                  {rocket.configuration ? rocket.configuration : "Unknown"}
+                </TableCell>
+                <TableCell>
+                  {location.pads.length > 0
+                    ? location.pads[0].name
+                    : location.name}
+                </TableCell>
+                <TableCell>
+                  {launch.status === 1
+                    ? "Green"
+                    : launch.status === 2
+                    ? "Red"
+                    : launch.status === 3
+                    ? "Succeeded"
+                    : "Failed"}
+                </TableCell>
                 <TableCell>{net}</TableCell>
               </TableRow>
             </TableBody>
