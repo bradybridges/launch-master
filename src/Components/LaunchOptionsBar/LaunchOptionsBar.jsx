@@ -15,24 +15,18 @@ export default function LaunchOptionsBar({
   const useStyles = makeStyles((theme) => ({
     buttonContainer: {
       display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
       alignItems: "center",
-      paddingTop: theme.spacing(10),
+      flexDirection: "column",
+      padding: `${theme.spacing(10)}px 0 0 0`,
     },
     formControl: {
       margin: theme.spacing(1),
       minWidth: 120,
-      alignSelf: "flex-end",
     },
     selectEmpty: {
       marginTop: theme.spacing(2),
     },
   }));
-
-  const handleActive = (newActive) => {
-    setActive(newActive);
-  };
 
   const handleNumResults = (e) => {
     setNumResults(e.target.value);
