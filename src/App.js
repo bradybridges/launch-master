@@ -9,7 +9,7 @@ import {
   ThemeProvider,
   CircularProgress,
 } from "@material-ui/core";
-import { red, blue } from "@material-ui/core/colors";
+import { red } from "@material-ui/core/colors";
 import { getUpcomingLaunches, getPastLaunches } from "./apiCalls";
 
 class App extends React.Component {
@@ -99,11 +99,7 @@ class App extends React.Component {
 
     if (upcomingLaunches) {
       const launchCards = upcomingLaunches.launches.map((launch, i) => {
-        return (
-          <Grid item xs={12} md={10} lg={8} key={launch.name}>
-            <LaunchCard launch={launch} past={false} />
-          </Grid>
-        );
+        return <LaunchCard key={launch.id} launch={launch} past={false} />;
       });
       return launchCards.slice(0, numResults);
     } else {
@@ -116,18 +112,7 @@ class App extends React.Component {
 
     if (pastLaunches) {
       return pastLaunches.launches.map((launch) => {
-        return (
-          <Grid
-            item
-            direction="column"
-            xs={12}
-            md={10}
-            lg={8}
-            key={launch.name}
-          >
-            <LaunchCard launch={launch} past={true} />
-          </Grid>
-        );
+        return <LaunchCard key={launch.id} launch={launch} past={true} />;
       });
     } else {
       return <h1>We couldn't find any past launches...</h1>;
