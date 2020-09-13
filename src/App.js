@@ -7,7 +7,6 @@ import {
   Grid,
   createMuiTheme,
   ThemeProvider,
-  Typography,
   CircularProgress,
 } from "@material-ui/core";
 import { red, blue } from "@material-ui/core/colors";
@@ -101,14 +100,7 @@ class App extends React.Component {
     if (upcomingLaunches) {
       const launchCards = upcomingLaunches.launches.map((launch, i) => {
         return (
-          <Grid
-            item
-            direction="column"
-            xs={12}
-            md={10}
-            lg={8}
-            key={launch.name}
-          >
+          <Grid item xs={12} md={10} lg={8} key={launch.name}>
             <LaunchCard launch={launch} past={false} />
           </Grid>
         );
