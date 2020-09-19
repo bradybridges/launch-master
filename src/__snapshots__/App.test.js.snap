@@ -311,6 +311,7 @@ exports[`App should match snapshot when app is loading 1`] = `
       numResults={10}
       setNumResults={[Function]}
       setTimeFrame={[Function]}
+      timeframe={false}
     />
     <WithStyles(ForwardRef(Grid))
       alignItems="center"
