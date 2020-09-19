@@ -16,11 +16,18 @@ exports[`LaunchCard Component should show alternate text or not display elements
       % Chance of Launch
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))
+      className="undefined makeStyles-boldText-6"
       paragraph={true}
+      style={
+        Object {
+          "textAlign": "center",
+        }
+      }
     >
       No description available
     </WithStyles(ForwardRef(Typography))>
     <a
+      className="makeStyles-launchLink-5"
       href="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
       key="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
       rel="noopener noreferrer"
@@ -31,11 +38,16 @@ exports[`LaunchCard Component should show alternate text or not display elements
   </WithStyles(ForwardRef(CardContent))>
   <WithStyles(ForwardRef(CardActions))
     disableSpacing={true}
+    style={
+      Object {
+        "justifyContent": "flex-end",
+      }
+    }
   >
     <WithStyles(ForwardRef(IconButton))
       aria-expanded={false}
       aria-label="show more"
-      className="makeStyles-expand-3"
+      className="makeStyles-expand-2"
       onClick={[Function]}
     >
       <ExpandMoreIcon />
@@ -366,7 +378,7 @@ exports[`LaunchCard Component should show alternate text or not display elements
     >
       <WithStyles(ForwardRef(Table))
         aria-label="Launch Information"
-        className="makeStyles-table-5"
+        className="makeStyles-table-4"
       >
         <WithStyles(ForwardRef(TableHead))>
           <WithStyles(ForwardRef(TableRow))>
@@ -451,6 +463,11 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
       % Chance of Launch
     </WithStyles(ForwardRef(Typography))>
     <WithStyles(ForwardRef(Typography))
+      style={
+        Object {
+          "paddingLeft": 0,
+        }
+      }
       variant="h4"
     >
       Government/Top Secret
@@ -462,6 +479,7 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
       Classified payload for the U.S. National Reconnaissance Office.
     </WithStyles(ForwardRef(Typography))>
     <a
+      className="makeStyles-launchLink-5"
       href="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
       key="https://www.nro.gov/Portals/65/documents/news/Press%20Kit_Launch_NROL-129.pdf?ver=2020-07-07-134345-553"
       rel="noopener noreferrer"
@@ -472,11 +490,16 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
   </WithStyles(ForwardRef(CardContent))>
   <WithStyles(ForwardRef(CardActions))
     disableSpacing={true}
+    style={
+      Object {
+        "justifyContent": "flex-end",
+      }
+    }
   >
     <WithStyles(ForwardRef(IconButton))
       aria-expanded={false}
       aria-label="show more"
-      className="makeStyles-expand-3"
+      className="makeStyles-expand-2"
       onClick={[Function]}
     >
       <ExpandMoreIcon />
@@ -807,7 +830,7 @@ exports[`LaunchCard should match snapshot when probabily, vidURLs, launch confir
     >
       <WithStyles(ForwardRef(Table))
         aria-label="Launch Information"
-        className="makeStyles-table-5"
+        className="makeStyles-table-4"
       >
         <WithStyles(ForwardRef(TableHead))>
           <WithStyles(ForwardRef(TableRow))>
