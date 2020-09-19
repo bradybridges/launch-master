@@ -8,9 +8,7 @@ exports[`Header Header should match snapshot 1`] = `
     }
   }
 >
-  <WithStyles(ForwardRef(AppBar))
-    position="static"
-  >
+  <WithStyles(ForwardRef(AppBar))>
     <WithStyles(ForwardRef(Toolbar))
       className="makeStyles-toolbar-1"
     >
@@ -20,36 +18,15 @@ exports[`Header Header should match snapshot 1`] = `
         Launch Master
       </WithStyles(ForwardRef(Typography))>
       <div>
-        <WithStyles(ForwardRef(Typography))
+        <ForwardRef(SvgSun)
+          className="makeStyles-darkModeIcon-5 makeStyles-rotate-6"
+          onClick={[MockFunction]}
           style={
             Object {
-              "display": "inline",
+              "fill": undefined,
             }
           }
-        >
-          Light
-        </WithStyles(ForwardRef(Typography))>
-        <WithStyles(ForwardRef(Switch))
-          checked={true}
-          color="secondary"
-          inputProps={
-            Object {
-              "aria-label": "dark mode checkbox",
-            }
-          }
-          name="darkmode-toggle"
-          onChange={[Function]}
         />
-        <WithStyles(ForwardRef(Typography))
-          color="secondary"
-          style={
-            Object {
-              "display": "inline",
-            }
-          }
-        >
-          Dark
-        </WithStyles(ForwardRef(Typography))>
       </div>
     </WithStyles(ForwardRef(Toolbar))>
   </WithStyles(ForwardRef(AppBar))>
