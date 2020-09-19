@@ -8,12 +8,12 @@ exports[`LaunchOptionsBar should match snapshot 1`] = `
   <WithStyles(ForwardRef(ToggleButton))
     aria-label="past or upcoming launch selection"
     exclusive={true}
-    onChange={[Function]}
     value="upcoming"
   >
     <WithStyles(ForwardRef(ToggleButton))
       aria-label="upcoming launches"
       onClick={[Function]}
+      selected={true}
       value="upcoming"
     >
       Upcoming
