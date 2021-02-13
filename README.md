@@ -1,13 +1,9 @@
 # Launch Master
 
 ## Table of contents
-* [Live Page](#Live-Page)
 * [Objective](#Objective)
 * [Tools Used](#Tools-Used)
-* [Screenshots](#Screenshots) 
-
-## Live Page
-  Take a look at the live page [here](https://bradybridges.github.io/launch-master)
+* [Screenshots](#Screenshots)
 
 ## Objective
   
